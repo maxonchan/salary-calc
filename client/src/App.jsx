@@ -203,7 +203,7 @@ function App() {
         <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-emerald-600/10 blur-[120px] rounded-full"></div>
       </div>
 
-      <div className="max-w-2xl w-full relative">
+      <div className="max-w-4xl w-full relative">
         <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl shadow-2xl p-8 md:p-10 transition-all duration-300">
           <header className="mb-10 text-center">
             <h1 className="text-4xl font-black mb-2 bg-gradient-to-r from-blue-400 via-emerald-400 to-blue-400 bg-[length:200%_auto] animate-gradient-x bg-clip-text text-transparent">
@@ -214,11 +214,12 @@ function App() {
 
           <main className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="relative group">
+              {/* Row 1: Salary & Transportation */}
+              <div className="relative group flex flex-col">
                 <label htmlFor="salary" className="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">
                   Monthly Salary / 月収 (額面)
                 </label>
-                <div className="relative">
+                <div className="relative flex-1">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-bold text-slate-600 group-focus-within:text-emerald-400 transition-colors">¥</span>
                   <input
                     type="number"
@@ -226,16 +227,16 @@ function App() {
                     value={salary}
                     onChange={(e) => setSalary(e.target.value)}
                     placeholder="300,000"
-                    className="w-full bg-slate-950/50 border-2 border-slate-800 focus:border-emerald-500/50 rounded-2xl py-4 pl-12 pr-6 text-2xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-slate-700"
+                    className="w-full h-full bg-slate-950/50 border-2 border-slate-800 focus:border-emerald-500/50 rounded-2xl py-4 pl-12 pr-6 text-2xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-slate-700"
                   />
                 </div>
               </div>
 
-              <div className="relative group">
+              <div className="relative group flex flex-col">
                 <label htmlFor="transportation" className="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">
                   Transportation / 交通費 (非課税)
                 </label>
-                <div className="relative">
+                <div className="relative flex-1">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl font-bold text-slate-600 group-focus-within:text-blue-400 transition-colors">¥</span>
                   <input
                     type="number"
@@ -243,16 +244,17 @@ function App() {
                     value={transportation}
                     onChange={(e) => setTransportation(e.target.value)}
                     placeholder="0"
-                    className="w-full bg-slate-950/50 border-2 border-slate-800 focus:border-blue-500/50 rounded-2xl py-4 pl-10 pr-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all placeholder:text-slate-700"
+                    className="w-full h-full bg-slate-950/50 border-2 border-slate-800 focus:border-blue-500/50 rounded-2xl py-4 pl-10 pr-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all placeholder:text-slate-700"
                   />
                 </div>
               </div>
 
-              <div className="relative group">
+              {/* Row 2: Prev Year Income & Prefecture */}
+              <div className="relative group flex flex-col">
                 <label htmlFor="prevYearIncome" className="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">
                   Prev. Year Annual Income / 前年年収
                 </label>
-                <div className="relative">
+                <div className="relative flex-1">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl font-bold text-slate-600 group-focus-within:text-purple-400 transition-colors">¥</span>
                   <input
                     type="number"
@@ -260,12 +262,12 @@ function App() {
                     value={prevYearIncome}
                     onChange={(e) => setPrevYearIncome(e.target.value)}
                     placeholder="0 (First year in Japan)"
-                    className="w-full bg-slate-950/50 border-2 border-slate-800 focus:border-purple-500/50 rounded-2xl py-4 pl-10 pr-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-purple-500/10 transition-all placeholder:text-slate-700"
+                    className="w-full h-full bg-slate-950/50 border-2 border-slate-800 focus:border-purple-500/50 rounded-2xl py-4 pl-10 pr-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-purple-500/10 transition-all placeholder:text-slate-700"
                   />
                 </div>
               </div>
 
-              <div className="relative group">
+              <div className="relative group flex flex-col">
                 <label htmlFor="prefecture" className="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">
                   Prefecture / 都道府県
                 </label>
@@ -273,7 +275,7 @@ function App() {
                   id="prefecture"
                   value={prefecture}
                   onChange={(e) => setPrefecture(e.target.value)}
-                  className="w-full bg-slate-950/50 border-2 border-slate-800 focus:border-emerald-500/50 rounded-2xl py-4 px-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all appearance-none cursor-pointer"
+                  className="flex-1 w-full bg-slate-950/50 border-2 border-slate-800 focus:border-emerald-500/50 rounded-2xl py-4 px-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all appearance-none cursor-pointer"
                 >
                   {Object.keys(rates.social_insurance.health_insurance_prefectures)
                     .sort()
@@ -285,25 +287,26 @@ function App() {
                 </select>
               </div>
 
-              <div className="relative group">
-                <label htmlFor="age" className="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">
-                  Age / 年齢
-                </label>
-                <input
-                  type="number"
-                  id="age"
-                  value={age}
-                  onChange={(e) => setAge(parseInt(e.target.value) || 0)}
-                  className="w-full bg-slate-950/50 border-2 border-slate-800 focus:border-emerald-500/50 rounded-2xl py-4 px-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
-                />
-              </div>
+              {/* Row 3: Personal Info (Age, Spouse, Dependents) */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:col-span-2">
+                <div className="relative group flex flex-col">
+                  <label htmlFor="age" className="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">
+                    Age / 年齢
+                  </label>
+                  <input
+                    type="number"
+                    id="age"
+                    value={age}
+                    onChange={(e) => setAge(parseInt(e.target.value) || 0)}
+                    className="flex-1 w-full bg-slate-950/50 border-2 border-slate-800 focus:border-emerald-500/50 rounded-2xl py-4 px-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
+                  />
+                </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative group">
+                <div className="relative group flex flex-col">
                   <label className="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">
                     Spouse / 配偶者
                   </label>
-                  <label className="flex items-center cursor-pointer bg-slate-950/50 border-2 border-slate-800 rounded-2xl py-4 px-6 focus-within:border-emerald-500/50 transition-all h-[68px]">
+                  <label className="flex-1 flex items-center cursor-pointer bg-slate-950/50 border-2 border-slate-800 rounded-2xl py-4 px-6 focus-within:border-emerald-500/50 transition-all">
                     <input
                       type="checkbox"
                       checked={hasSpouse}
@@ -314,7 +317,7 @@ function App() {
                   </label>
                 </div>
 
-                <div className="relative group">
+                <div className="relative group flex flex-col">
                   <label htmlFor="dependents" className="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">
                     Dependents / 扶養
                   </label>
@@ -324,17 +327,18 @@ function App() {
                     min="0"
                     value={dependents}
                     onChange={(e) => setDependents(parseInt(e.target.value) || 0)}
-                    className="w-full bg-slate-950/50 border-2 border-slate-800 focus:border-emerald-500/50 rounded-2xl py-4 px-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
+                    className="flex-1 w-full bg-slate-950/50 border-2 border-slate-800 focus:border-emerald-500/50 rounded-2xl py-4 px-6 text-xl font-bold text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative group">
-                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3" title="Matches outdated 0.5% rate used by some calculators.">
+              {/* Row 4: Extra Options */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:col-span-2">
+                <div className="relative group flex flex-col">
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3" title="Matches outdated 0.5% rate used by some calculators.">
                     Legacy Unempl. / 旧雇用保険(0.5%)
                   </label>
-                  <label className="flex items-center cursor-pointer bg-slate-950/50 border-2 border-slate-800 rounded-2xl py-4 px-6 focus-within:border-rose-500/50 transition-all h-[68px]">
+                  <label className="flex-1 flex items-center cursor-pointer bg-slate-950/50 border-2 border-slate-800 rounded-2xl py-4 px-6 focus-within:border-rose-500/50 transition-all">
                     <input
                       type="checkbox"
                       checked={useLegacyEmploymentRate}
@@ -345,11 +349,11 @@ function App() {
                   </label>
                 </div>
                 
-                <div className="relative group">
-                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3">
+                <div className="relative group flex flex-col">
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
                     Child Support / 子育て支援金
                   </label>
-                  <label className="flex items-center cursor-pointer bg-slate-950/50 border-2 border-slate-800 rounded-2xl py-4 px-6 focus-within:border-amber-500/50 transition-all h-[68px]">
+                  <label className="flex-1 flex items-center cursor-pointer bg-slate-950/50 border-2 border-slate-800 rounded-2xl py-4 px-6 focus-within:border-amber-500/50 transition-all">
                     <input
                       type="checkbox"
                       checked={includeChildSupport}
@@ -402,9 +406,9 @@ function App() {
                     <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-tighter mb-2">Deductions Breakdown / 控除明細</h4>
                     
                     <div className="group">
-                      <div className="flex justify-between items-center text-sm mb-1.5">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-sm mb-1.5 gap-1">
                         <span className="text-slate-400">Social Insurance / 社会保険</span>
-                        <span className="font-bold text-rose-400/90">- ¥{Math.round(calculation.monthlySocialTotal).toLocaleString()}</span>
+                        <span className="font-bold text-rose-400/90 sm:text-right">- ¥{Math.round(calculation.monthlySocialTotal).toLocaleString()}</span>
                       </div>
                       <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
                         <div 
@@ -412,23 +416,23 @@ function App() {
                           style={{ width: `${(calculation.monthlySocialTotal / calculation.monthlyGross) * 100}%` }}
                         ></div>
                       </div>
-                      <div className="mt-2 grid grid-cols-2 gap-2 px-1">
-                        <div className="text-[10px] text-slate-500">Health / 健康: ¥{Math.round(calculation.monthlyHealth).toLocaleString()}</div>
+                      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 px-1">
+                        <div className="text-xs text-slate-500">Health / 健康: ¥{Math.round(calculation.monthlyHealth).toLocaleString()}</div>
                         {calculation.monthlyNursing > 0 && (
-                          <div className="text-[10px] text-rose-300">Nursing / 介護: ¥{Math.round(calculation.monthlyNursing).toLocaleString()}</div>
+                          <div className="text-xs text-rose-300">Nursing / 介護: ¥{Math.round(calculation.monthlyNursing).toLocaleString()}</div>
                         )}
-                        <div className="text-[10px] text-slate-500">Pension / 年金: ¥{Math.round(calculation.monthlyPension).toLocaleString()}</div>
-                        <div className="text-[10px] text-slate-500">Unempl / 雇用: ¥{Math.round(calculation.monthlyUnemployment).toLocaleString()}</div>
+                        <div className="text-xs text-slate-500">Pension / 年金: ¥{Math.round(calculation.monthlyPension).toLocaleString()}</div>
+                        <div className="text-xs text-slate-500">Unempl / 雇用: ¥{Math.round(calculation.monthlyUnemployment).toLocaleString()}</div>
                         {calculation.monthlyChildSupport > 0 && (
-                          <div className="text-[10px] text-amber-500">Support / 支援金: ¥{Math.round(calculation.monthlyChildSupport).toLocaleString()}</div>
+                          <div className="text-xs text-amber-500">Support / 支援金: ¥{Math.round(calculation.monthlyChildSupport).toLocaleString()}</div>
                         )}
                       </div>
                     </div>
 
                     <div className="group">
-                      <div className="flex justify-between items-center text-sm mb-1.5">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-sm mb-1.5 gap-1">
                         <span className="text-slate-400">Income Tax / 税金 (所得税 + 住民税)</span>
-                        <span className="font-bold text-amber-400/90">- ¥{Math.round(calculation.currentMonthlyTaxTotal).toLocaleString()}</span>
+                        <span className="font-bold text-amber-400/90 sm:text-right">- ¥{Math.round(calculation.currentMonthlyTaxTotal).toLocaleString()}</span>
                       </div>
                       <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
                         <div 
@@ -436,9 +440,9 @@ function App() {
                           style={{ width: `${(calculation.currentMonthlyTaxTotal / calculation.monthlyGross) * 100}%` }}
                         ></div>
                       </div>
-                      <div className="mt-2 grid grid-cols-2 gap-2 px-1">
-                        <div className="text-[10px] text-slate-500">National (Monthly Table) / 所得税: ¥{Math.round(calculation.nationalTax).toLocaleString()}</div>
-                        <div className="text-[10px] text-slate-500">
+                      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 px-1">
+                        <div className="text-xs text-slate-500">National (Monthly Table) / 所得税: ¥{Math.round(calculation.nationalTax).toLocaleString()}</div>
+                        <div className="text-xs text-slate-500">
                           Resident ({parseFloat(prevYearIncome) > 0 ? 'Current' : 'First Year'}) / 住民税: ¥{Math.round(calculation.residentTax).toLocaleString()}
                         </div>
                       </div>
@@ -455,9 +459,9 @@ function App() {
                       </svg>
                     </summary>
                     <div className="mt-4 space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
-                      <div className="bg-slate-950/60 rounded-xl p-4 border border-slate-800/50">
-                        <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-tighter mb-3">Formula / 計算式</h4>
-                        <div className="font-mono text-[11px] space-y-2 text-slate-300">
+                      <div className="bg-slate-950/60 rounded-xl p-5 border border-slate-800/50">
+                        <h4 className="text-xs font-black text-slate-500 uppercase tracking-wider mb-4">Formula / 計算式</h4>
+                        <div className="font-mono text-xs space-y-2.5 text-slate-300">
                           <p className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                             手取り = 額面 - 社会保険料 - 所得税 - 住民税
@@ -477,24 +481,24 @@ function App() {
                         </div>
                       </div>
 
-                      <div className="bg-slate-950/40 rounded-xl p-4 border border-slate-800/30">
-                        <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-tighter mb-3">Applied Rates / 適用レート</h4>
-                        <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-slate-950/40 rounded-xl p-5 border border-slate-800/30">
+                        <h4 className="text-xs font-black text-slate-500 uppercase tracking-wider mb-4">Applied Rates / 適用レート</h4>
+                        <div className="grid grid-cols-2 gap-5">
                           <div className="space-y-1">
-                            <div className="text-[10px] text-slate-500 uppercase tracking-wider">Health ({prefecture})</div>
-                            <div className="text-xs font-bold text-white">{(rates.social_insurance.health_insurance_prefectures[prefecture] * 100).toFixed(3)}%</div>
+                            <div className="text-xs text-slate-500 uppercase tracking-wider">Health ({prefecture})</div>
+                            <div className="text-sm font-bold text-white">{(rates.social_insurance.health_insurance_prefectures[prefecture] * 100).toFixed(3)}%</div>
                           </div>
                           <div className="space-y-1">
-                            <div className="text-[10px] text-slate-500 uppercase tracking-wider">Pension</div>
-                            <div className="text-xs font-bold text-white">{(rates.social_insurance.welfare_pension * 100).toFixed(2)}%</div>
+                            <div className="text-xs text-slate-500 uppercase tracking-wider">Pension</div>
+                            <div className="text-sm font-bold text-white">{(rates.social_insurance.welfare_pension * 100).toFixed(2)}%</div>
                           </div>
                           <div className="space-y-1">
-                            <div className="text-[10px] text-slate-500 uppercase tracking-wider">Employment</div>
-                            <div className="text-xs font-bold text-white">{(calculation.employmentRate * 100).toFixed(2)}%</div>
+                            <div className="text-xs text-slate-500 uppercase tracking-wider">Employment</div>
+                            <div className="text-sm font-bold text-white">{(calculation.employmentRate * 100).toFixed(2)}%</div>
                           </div>
                           <div className="space-y-1">
-                            <div className="text-[10px] text-slate-500 uppercase tracking-wider">Resident Tax</div>
-                            <div className="text-xs font-bold text-white">10.0%</div>
+                            <div className="text-xs text-slate-500 uppercase tracking-wider">Resident Tax</div>
+                            <div className="text-sm font-bold text-white">10.0%</div>
                           </div>
                         </div>
                       </div>
