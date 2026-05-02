@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
+import taxRates from './data/taxRates'
 
 function App() {
   const [salary, setSalary] = useState('')
@@ -10,21 +11,8 @@ function App() {
   const [dependents, setDependents] = useState(0)
   const [includeChildSupport, setIncludeChildSupport] = useState(false)
   const [useLegacyEmploymentRate, setUseLegacyEmploymentRate] = useState(false)
-  const [rates, setRates] = useState(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetch('http://localhost:8000/api/tax-rates')
-      .then(res => res.json())
-      .then(data => {
-        setRates(data)
-        setLoading(false)
-      })
-      .catch(err => {
-        console.error('Failed to fetch rates', err)
-        setLoading(false)
-      })
-  }, [])
+  
+  const rates = taxRates;
 
   // Helper to get Standard Monthly Remuneration (標準報酬月額)
   const getSMR = (totalMonthly) => {
@@ -181,19 +169,11 @@ function App() {
     "Ishikawa": "石川県", "Fukui": "福井県", "Yamanashi": "山梨県", "Nagano": "長野県",
     "Gifu": "岐阜県", "Shizuoka": "静岡県", "Aichi": "愛知県", "Mie": "三重県",
     "Shiga": "滋賀県", "Kyoto": "京都府", "Osaka": "大阪府", "Hyogo": "兵庫県",
-    "Nara": "奈良県", "Wakayama": "和歌山県", "Tottori": "鳥取県", "Shimane": "島根県",
+    "Nara": "奈良県", "Wakayama": "和歌山県", "Tottori": "鸟取県", "Shimane": "島根県",
     "Okayama": "岡山県", "Hiroshima": "広島県", "Yamaguchi": "山口県", "Tokushima": "徳島県",
     "Kagawa": "香川県", "Ehime": "愛媛県", "Kochi": "高知県", "Fukuoka": "福岡県",
-    "Saga": "佐賀県", "Nagasaki": "長崎県", "Kumamoto": "熊本県", "Oita": "大分県",
+    "Saga": "佐贺県", "Nagasaki": "長崎県", "Kumamoto": "熊本県", "Oita": "大分県",
     "Miyazaki": "宮崎県", "Kagoshima": "鹿児島県", "Okinawa": "沖縄県"
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-950 text-emerald-400">
-        <div className="animate-pulse text-2xl font-mono tracking-widest">LOADING RATES...</div>
-      </div>
-    )
   }
 
   return (
